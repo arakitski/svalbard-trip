@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Экспедиция на Шпицберген (Свальбард) | Май 2027</title>
+  <meta name="description" content="План арктической экспедиции на Шпицберген (Свальбард) на 5 дней: перелёты, маршрут по дням, снегоходы, ночёвка в леднике, безопасность и бюджет.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-container">
+      <div class="brand-logo">
+        <span class="brand-icon">🏔️</span>
+        <span>SVALBARD EXPEDITION</span>
+      </div>
+      <button class="nav-btn-mobile" id="mobileMenuBtn" aria-label="Открыть меню">☰</button>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#flights" class="nav-link">Перелёты</a></li>
+          <li><a href="#itinerary" class="nav-link">Программа</a></li>
+          <li><a href="#activities" class="nav-link">Активности</a></li>
+          <li><a href="#calculator" class="nav-link">Калькулятор</a></li>
+          <li><a href="#safety" class="nav-link">Безопасность</a></li>
+          <li><a href="#checklist" class="nav-link">Чек-лист</a></li>
+          <li><a href="#links" class="nav-link">Ссылки</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span>☀️ 24-часовой полярный день</span>
+        <span>•</span>
+        <span>Группа 5–6 человек</span>
+        <span>•</span>
+        <span>Начало мая</span>
+      </div>
+      <h1>Экспедиция на Шпицберген</h1>
+      <p class="hero-subtitle">
+        5 дней и 4 ночи чистого арктического адреналина: самостоятельное сафари на снегоходах, ночёвка внутри живого ледника, упряжки хаски и дикие моржи под полуночным солнцем.
+      </p>
+      <div class="hero-actions">
+        <a href="#itinerary" class="btn btn-primary">Посмотреть программу</a>
+        <a href="#calculator" class="btn btn-secondary">Рассчитать бюджет</a>
+      </div>
+
+      <!-- KPI Grid -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon">⏱️</div>
+          <div class="kpi-value">5 дней / 4 ночи</div>
+          <div class="kpi-label">Оптимальный тайминг</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">💰</div>
+          <div class="kpi-value">~7 700 – 8 900 PLN</div>
+          <div class="kpi-label">Бюджет под ключ / чел.</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">🧊</div>
+          <div class="kpi-value">1 ночь в пещере</div>
+          <div class="kpi-label">Сон внутри ледника</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">🏍️</div>
+          <div class="kpi-value">60–80+ км</div>
+          <div class="kpi-label">Снегоходное сафари</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flights Section -->
+  <section class="section" id="flights">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Логистика</span>
+        <h2 class="section-title">Перелёты и Расписание</h2>
+        <p class="section-desc">Варшава (WAW) → Осло (OSL) → Лонгйир (LYR). Все три города находятся в одном часовом поясе CEST (UTC+2).</p>
+      </div>
+
+      <div class="flight-timeline">
+        <!-- Outbound -->
+        <div class="flight-route-card">
+          <div class="route-header">
+            <div class="route-title">
+              <span>🛫 Туда: Воскресенье, 3 мая (или Пн 4 мая)</span>
+              <span class="badge badge-success">Общее время в пути: ~7ч 05м</span>
+            </div>
+            <span class="badge badge-info">1 пересадка в Осло (2 часа)</span>
+          </div>
+          <div class="flight-legs">
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">06:15 → 08:20</span>
+                <span class="flight-carrier">Wizz Air (W6 1505)</span>
+              </div>
+              <div class="flight-airport">Варшава Шопен (WAW) → Осло Гардермуэн (OSL) • 2ч 05м</div>
+            </div>
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">08:20 → 10:20</span>
+                <span class="flight-carrier">Пересадка в OSL</span>
+              </div>
+              <div class="flight-airport">Получение багажа, регистрация, выход через паспортный контроль Gate F</div>
+            </div>
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">10:20 → 13:20</span>
+                <span class="flight-carrier">Norwegian (DY390)</span>
+              </div>
+              <div class="flight-airport">Осло (OSL) → Лонгйир, Шпицберген (LYR) • 3ч 00м (Прямой)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inbound -->
+        <div class="flight-route-card">
+          <div class="route-header">
+            <div class="route-title">
+              <span>🛬 Обратно: Четверг, 7 мая (или Пт 8 мая)</span>
+              <span class="badge badge-success">Общее время в пути: ~7ч 50м</span>
+            </div>
+            <span class="badge badge-info">Шаттл к рейсу от дверей отеля</span>
+          </div>
+          <div class="flight-legs">
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">14:45 → 17:45</span>
+                <span class="flight-carrier">SAS (SK4491) / Norwegian</span>
+              </div>
+              <div class="flight-airport">Лонгйир (LYR) → Осло (OSL) • 3ч 00м (Прямой)</div>
+            </div>
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">17:45 → 20:35</span>
+                <span class="flight-carrier">Пересадка в OSL</span>
+              </div>
+              <div class="flight-airport">Вход в Шенген, ужин в фуд-корте аэропорта Осло</div>
+            </div>
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">20:35 → 22:35</span>
+                <span class="flight-carrier">LOT Polish (LO 484)</span>
+              </div>
+              <div class="flight-airport">Осло Гардермуэн (OSL) → Варшава Шопен (WAW) • 2ч 00м</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flight Booking Strategy Card -->
+      <div class="glass-panel" style="margin-top: 30px;">
+        <h3 style="font-size: 1.25rem; margin-bottom: 12px; color: #fff;">💡 Когда и как бронировать билеты?</h3>
+        <p style="color: var(--text-muted); margin-bottom: 16px;">
+          <strong>Black Friday / Black Week (конец ноября):</strong> Самое выгодное окно в году. Norwegian даёт промокод на 15–30% скидки на весенние перелёты. Рекомендуем выкупать билеты в конце ноября. Базовый тариф SAS сейчас от €87 в одну сторону.
+        </p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="https://www.norwegian.com" target="_blank" rel="noopener" class="btn btn-secondary">Norwegian Low Fare Calendar ↗</a>
+          <a href="https://www.flysas.com" target="_blank" rel="noopener" class="btn btn-secondary">SAS Low Fare Calendar ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Itinerary Section -->
+  <section class="section" id="itinerary">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Маршрут</span>
+        <h2 class="section-title">Программа по Дням</h2>
+        <p class="section-desc">Нажмите на любой день, чтобы раскрыть подробный поминутный план экспедиции.</p>
+      </div>
+
+      <div class="itinerary-days">
+        <!-- Day 1 -->
+        <div class="day-card active">
+          <div class="day-header">
+            <div class="day-header-left">
+              <span class="day-number-badge">ДЕНЬ 1</span>
+              <span class="day-title">Прилёт в Арктику, оружие и экипировка</span>
+            </div>
+            <span class="day-toggle-icon">▼</span>
+          </div>
+          <div class="day-body">
+            <div class="timeline-step">
+              <div class="step-time">06:15 – 13:20</div>
+              <div class="step-desc">Вылет из Варшавы, стыковка в Осло, посадка в Лонгйире среди заснеженных гор.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">13:40 – 14:15</div>
+              <div class="step-desc">Автобус Flybussen встречает у терминала и довозит прямо до дверей отеля в Лонгйире.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">15:00 – 17:30</div>
+              <div class="step-desc">Визит в офис <em>Ingeniør G. Paulsen (IGP)</em>: примерка арктических термокомбинезонов, проверка оружейных лицензий (EFP) и брони снегоходов.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">19:30</div>
+              <div class="step-desc">Приветственный ужин в культовом ресторане <em>Kroa</em> (стейки из оленины, треска). Первое знакомство с 24-часовым полярным днем.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="day-card">
+          <div class="day-header">
+            <div class="day-header-left">
+              <span class="day-number-badge">ДЕНЬ 2</span>
+              <span class="day-title">Самостоятельное сафари на снегоходах к Вилле Фредхейм</span>
+            </div>
+            <span class="day-toggle-icon">▼</span>
+          </div>
+          <div class="day-body">
+            <div class="timeline-step">
+              <div class="step-time">09:00 – 10:00</div>
+              <div class="step-desc">Получение 3 снегоходов, 2 карабинов (.30-06), ракетниц и спутникового трекера Garmin inReach в прокате IGP.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">10:00 – 15:30</div>
+              <div class="step-desc">Экспедиция через широкую долину Адвентдален и Сассендален к исторической хижине охотника Хилмара Нёиса (Вилла Фредхейм). Дистанция ~60–80 км. Нулевой риск ледниковых трещин.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">13:00</div>
+              <div class="step-desc">Полевой обед на газовых горелках посреди арктической тундры с видом на замерзший Темпельфьорд.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">17:00 – 20:00</div>
+              <div class="step-desc">Возврат техники, дегустация в <em>Svalbard Bryggeri</em> — самой северной крафтовой пивоварне в мире.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="day-card">
+          <div class="day-header">
+            <div class="day-header-left">
+              <span class="day-number-badge">ДЕНЬ 3</span>
+              <span class="day-title">Упряжки хаски + Экспедиция с ночёвкой внутри ледника</span>
+            </div>
+            <span class="day-toggle-icon">▼</span>
+          </div>
+          <div class="day-body">
+            <div class="timeline-step">
+              <div class="step-time">09:30 – 13:00</div>
+              <div class="step-desc">Драйвовый заезд на собачьих упряжках по долине Болтердален. Каждый самостоятельно управляет собственной упряжкой хаски.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">14:30 – 17:00</div>
+              <div class="step-desc">Встреча с гидом Svalbard Wildlife Expeditions. Подъем на ледник Ларсбреен на снегоступах с экспедиционными рюкзаками (+400 м набора высоты).</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">18:00 – 22:00</div>
+              <div class="step-desc">Спуск по лестнице в подледниковую пещеру. Ужин при свечах в хрустальном гроте из синего льда.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">Ночь</div>
+              <div class="step-desc">Сон внутри ледника на термоковриках в полярных спальниках на -30°C. Внутри пещеры стабильные -4°C и полный штиль. Гид с карабином охраняет вход.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="day-card">
+          <div class="day-header">
+            <div class="day-header-left">
+              <span class="day-number-badge">ДЕНЬ 4</span>
+              <span class="day-title">Спуск с ледника, сауна и морское сафари к моржам</span>
+            </div>
+            <span class="day-toggle-icon">▼</span>
+          </div>
+          <div class="day-body">
+            <div class="timeline-step">
+              <div class="step-time">08:30 – 11:30</div>
+              <div class="step-desc">Горячий завтрак внутри ледника, упаковка лагеря и спуск по морене обратно в Лонгйир.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">12:00 – 14:00</div>
+              <div class="step-desc">Заселение в отель, горячий душ, сауна, отдых и зарядка техники.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">14:30 – 19:00</div>
+              <div class="step-desc">Круиз на скоростном закрытом катере-РИБ или тихом электрокатамаране <em>Brim Explorer</em> к кромке морского льда: лежбища моржей, тюлени, белухи.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">20:30</div>
+              <div class="step-desc">Праздничный финальный ужин в историческом шахтерском ресторане <em>Gruvelageret</em>.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="day-card">
+          <div class="day-header">
+            <div class="day-header-left">
+              <span class="day-number-badge">ДЕНЬ 5</span>
+              <span class="day-title">Tax-free шоппинг и вылет домой</span>
+            </div>
+            <span class="day-toggle-icon">▼</span>
+          </div>
+          <div class="day-body">
+            <div class="timeline-step">
+              <div class="step-time">09:30 – 11:30</div>
+              <div class="step-desc">Покупка сувениров, норвежских свитеров и беспошлинного алкоголя (Шпицберген — зона tax-free). Посещение Музея Северного Полюса.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">12:05 – 12:30</div>
+              <div class="step-desc">Трансфер на автобусе Flybussen в аэропорт Лонгйира.</div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-time">14:05 – 22:35</div>
+              <div class="step-desc">Перелёт Лонгйир → Осло → Варшава. Возвращение домой!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activities Catalog Section -->
+  <section class="section" id="activities">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Каталог</span>
+        <h2 class="section-title">Топовые Активности</h2>
+        <p class="section-desc">Официальные экскурсии, проверенные сертифицированными гидами Visit Svalbard.</p>
+      </div>
+
+      <div class="activities-grid">
+        <!-- Activity 1 -->
+        <div class="activity-card">
+          <div>
+            <div class="activity-badge-row">
+              <span class="badge badge-info">Снегоходы</span>
+              <span class="badge badge-warning">200 км</span>
+            </div>
+            <h3 class="activity-title">Восточное побережье (Монбукта)</h3>
+            <p class="activity-desc">
+              Экстремальный 10-часовой пробег через ледники к замерзшему Баренцеву морю. Царство пакового льда и высочайшая вероятность встретить белого медведя.
+            </p>
+          </div>
+          <div class="activity-meta">
+            <span class="activity-price">~1 580 PLN / чел</span>
+            <span class="badge badge-success">8–10 часов</span>
+          </div>
+        </div>
+
+        <!-- Activity 2 -->
+        <div class="activity-card">
+          <div>
+            <div class="activity-badge-row">
+              <span class="badge badge-info">Экспедиция</span>
+              <span class="badge badge-success">ТОП-ВЫБОР</span>
+            </div>
+            <h3 class="activity-title">Сон внутри ледника (2 дня / 1 ночь)</h3>
+            <p class="activity-desc">
+              Спуск в подземные лабиринты ледника Ларсбреен. Горячий ужин в ледяном гроте, полярные спальники на -30°C, гид на карауле у входа.
+            </p>
+          </div>
+          <div class="activity-meta">
+            <span class="activity-price">~1 590 PLN / чел</span>
+            <span class="badge badge-success">2 дня / 1 ночь</span>
+          </div>
+        </div>
+
+        <!-- Activity 3 -->
+        <div class="activity-card">
+          <div>
+            <div class="activity-badge-row">
+              <span class="badge badge-info">Хаски</span>
+              <span class="badge badge-success">Актив</span>
+            </div>
+            <h3 class="activity-title">Ездовые собаки в Болтердален</h3>
+            <p class="activity-desc">
+              Самостоятельное управление упряжкой из 6 аляскинских хаски через снежные каньоны и ледниковые морены.
+            </p>
+          </div>
+          <div class="activity-meta">
+            <span class="activity-price">~740 – 980 PLN / чел</span>
+            <span class="badge badge-success">4–7 часов</span>
+          </div>
+        </div>
+
+        <!-- Activity 4 -->
+        <div class="activity-card">
+          <div>
+            <div class="activity-badge-row">
+              <span class="badge badge-info">Море & Льды</span>
+              <span class="badge badge-success">С 1 мая</span>
+            </div>
+            <h3 class="activity-title">Сафари к моржам на катере РИБ</h3>
+            <p class="activity-desc">
+              Скоростной теплый катер-РИБ Better Moments. Подход к гигантским лежбищам моржей на песчаных косах и льдинах Исфьорда.
+            </p>
+          </div>
+          <div class="activity-meta">
+            <span class="activity-price">~980 PLN / чел</span>
+            <span class="badge badge-success">5 часов</span>
+          </div>
+        </div>
+
+        <!-- Activity 5 -->
+        <div class="activity-card">
+          <div>
+            <div class="activity-badge-row">
+              <span class="badge badge-info">Треккинг</span>
+              <span class="badge badge-warning">Высота 850м</span>
+            </div>
+            <h3 class="activity-title">Восхождение на пик Trollsteinen</h3>
+            <p class="activity-desc">
+              Для опытных туристов: пересечение ледника в кошках и подъем по острому скальному гребню к вершине с панорамой 360° на весь Шпицберген.
+            </p>
+          </div>
+          <div class="activity-meta">
+            <span class="activity-price">~570 PLN / чел</span>
+            <span class="badge badge-success">7 часов</span>
+          </div>
+        </div>
+
+        <!-- Activity 6 -->
+        <div class="activity-card">
+          <div>
+            <div class="activity-badge-row">
+              <span class="badge badge-info">История</span>
+              <span class="badge badge-success">Подземелье</span>
+            </div>
+            <h3 class="activity-title">Угольная шахта Gruve 3</h3>
+            <p class="activity-desc">
+              Спуск в аутентичную законсервированную шахту в глубине горы. Шахтерская экипировка, вагонетки и штольни вечной мерзлоты.
+            </p>
+          </div>
+          <div class="activity-meta">
+            <span class="activity-price">~350 PLN / чел</span>
+            <span class="badge badge-success">3 часа</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="section" id="calculator">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Финансы</span>
+        <h2 class="section-title">Калькулятор Бюджета</h2>
+        <p class="section-desc">Настройте размер группы, класс поездки и валюту для мгновенного пересчета.</p>
+      </div>
+
+      <div class="glass-panel">
+        <div class="calc-container">
+          <div class="calc-controls">
+            <!-- Group size -->
+            <div class="control-group">
+              <label class="control-label">Размер группы (человек):</label>
+              <div class="btn-group">
+                <button class="btn-toggle" data-group="4">4 чел.</button>
+                <button class="btn-toggle" data-group="5">5 чел.</button>
+                <button class="btn-toggle active" data-group="6">6 чел.</button>
+                <button class="btn-toggle" data-group="8">8 чел.</button>
+              </div>
+            </div>
+
+            <!-- Tier -->
+            <div class="control-group">
+              <label class="control-label">Уровень комфорта:</label>
+              <div class="btn-group">
+                <button class="btn-toggle" data-tier="economy">Эконом</button>
+                <button class="btn-toggle active" data-tier="standard">Стандарт ⭐</button>
+                <button class="btn-toggle" data-tier="premium">Премиум</button>
+              </div>
+            </div>
+
+            <!-- Currency -->
+            <div class="control-group">
+              <label class="control-label">Валюта отображения:</label>
+              <div class="btn-group">
+                <button class="btn-toggle active" data-currency="PLN">PLN (zł)</button>
+                <button class="btn-toggle" data-currency="EUR">EUR (€)</button>
+                <button class="btn-toggle" data-currency="NOK">NOK (kr)</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-result-box">
+            <div>
+              <div class="calc-total-label">Стоимость на человека:</div>
+              <div class="calc-total-value" id="calcTotalValue">8 450 PLN</div>
+              <div class="calc-subtotal-value" id="calcSubtotalValue">Всего на группу (6 чел.): 50 700 PLN</div>
+            </div>
+
+            <ul class="calc-breakdown-list">
+              <li class="calc-breakdown-item">
+                <span>Авиабилеты с багажом:</span>
+                <span id="bFlights">2 150 PLN</span>
+              </li>
+              <li class="calc-breakdown-item">
+                <span>Отель (3 ночи + завтраки):</span>
+                <span id="bHotel">1 400 PLN</span>
+              </li>
+              <li class="calc-breakdown-item">
+                <span>Ночёвка внутри ледника:</span>
+                <span id="bIceCave">1 600 PLN</span>
+              </li>
+              <li class="calc-breakdown-item">
+                <span>Снегоход + топливо + страховка:</span>
+                <span id="bSnowmobile">750 PLN</span>
+              </li>
+              <li class="calc-breakdown-item">
+                <span>Хаски-упряжки:</span>
+                <span id="bDogsled">800 PLN</span>
+              </li>
+              <li class="calc-breakdown-item">
+                <span>Питание, рестораны и пивоварня:</span>
+                <span id="bFood">1 200 PLN</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Safety & Firearms Section -->
+  <section class="section" id="safety">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Безопасность</span>
+        <h2 class="section-title">Оружие и Белые Медведи</h2>
+        <p class="section-desc">За пределами поселка Лонгйир ношение крупнокалиберного оружия обязательно по закону.</p>
+      </div>
+
+      <div class="flight-timeline">
+        <div class="flight-route-card">
+          <div class="route-header">
+            <div class="route-title">
+              <span>🔫 Как арендовать карабин на Шпицбергене?</span>
+            </div>
+            <span class="badge badge-warning">Строгие правила губернатора</span>
+          </div>
+          <div class="flight-legs">
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">Вариант 1 (Быстрый)</span>
+                <span class="badge badge-success">Рекомендуется</span>
+              </div>
+              <div class="flight-desc" style="color: var(--text-muted); font-size: 0.92rem;">
+                Если у кого-то в группе есть <strong>European Firearms Pass (Europejska Karta Broni Palnej)</strong> — вы просто предъявляете её в пункте проката (IGP или Sportscenteret) и сразу берете карабин без согласования с полицией!
+              </div>
+            </div>
+
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">Вариант 2 (Заявка)</span>
+                <span class="badge badge-info">За 4–6 недель</span>
+              </div>
+              <div class="flight-desc" style="color: var(--text-muted); font-size: 0.92rem;">
+                Если только национальная лицензия: подается заявление Губернатору (<em>Sysselmesteren</em>) онлайн по адресу <code>firmapost@sysselmesteren.no</code> со справкой о несудимости с переводом на английский язык.
+              </div>
+            </div>
+
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">Комплект на группу</span>
+                <span class="badge badge-warning">2 карабина</span>
+              </div>
+              <div class="flight-desc" style="color: var(--text-muted); font-size: 0.92rem;">
+                На группу из 5–6 человек арендуем: <strong>2 карабина калибра .30-06 / .308 Win</strong>, патроны, 2 сигнальные ракетницы (Cal. 4) и спутниковый SOS-маяк Garmin inReach.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Checklist Section -->
+  <section class="section" id="checklist">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Подготовка</span>
+        <h2 class="section-title">Интерактивный Чек-лист</h2>
+        <p class="section-desc">Отмечайте выполненные пункты — состояние сохраняется в браузере.</p>
+      </div>
+
+      <div class="checklist-grid">
+        <div class="checklist-group">
+          <div class="checklist-title">📄 Документы</div>
+          <label class="check-item"><input type="checkbox"><span>Загранпаспорт (Шпицберген вне Шенгена!)</span></label>
+          <label class="check-item"><input type="checkbox"><span>Водительские права кат. B (для снегохода)</span></label>
+          <label class="check-item"><input type="checkbox"><span>Европейский паспорт оружия (EFP)</span></label>
+          <label class="check-item"><input type="checkbox"><span>Арктическая медстраховка со спасением</span></label>
+        </div>
+
+        <div class="checklist-group">
+          <div class="checklist-title">🧥 Одежда и Снаряжение</div>
+          <label class="check-item"><input type="checkbox"><span>Термобелье из шерсти мериноса (2 комплекта)</span></label>
+          <label class="check-item"><input type="checkbox"><span>Флисовая кофта / Polartec</span></label>
+          <label class="check-item"><input type="checkbox"><span>Ветрозащитная мембранная куртка (Gore-Tex)</span></label>
+          <label class="check-item"><input type="checkbox"><span>Горные треккинговые ботинки с фиксацией голеностопа</span></label>
+          <label class="check-item"><input type="checkbox"><span>Маска для сна (полярный день 24/7!)</span></label>
+          <label class="check-item"><input type="checkbox"><span>Солнцезащитный крем SPF 50 и очки с UV-защитой</span></label>
+        </div>
+
+        <div class="checklist-group">
+          <div class="checklist-title">📅 Дедлайны Бронирования</div>
+          <label class="check-item"><input type="checkbox"><span>Конец ноября: Выкупить авиабилеты на Black Friday</span></label>
+          <label class="check-item"><input type="checkbox"><span>Декабрь: Забронировать ночевку в ледяной пещере</span></label>
+          <label class="check-item"><input type="checkbox"><span>Январь: Забронировать отель в Лонгйире</span></label>
+          <label class="check-item"><input type="checkbox"><span>Февраль: Забронировать снегоходы в IGP</span></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Links Section -->
+  <section class="section" id="links">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Ресурсы</span>
+        <h2 class="section-title">Официальные Ссылки</h2>
+      </div>
+
+      <div class="glass-panel" style="text-align: center;">
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://en.visitsvalbard.com" target="_blank" rel="noopener" class="btn btn-secondary">Visit Svalbard (Официальный гид) ↗</a>
+          <a href="https://wildlife.no" target="_blank" rel="noopener" class="btn btn-secondary">Ледяные пещеры (Svalbard Wildlife) ↗</a>
+          <a href="https://hurtigrutensvalbard.com" target="_blank" rel="noopener" class="btn btn-secondary">Прокат IGP (Снегоходы & Оружие) ↗</a>
+          <a href="https://bettermoments.no" target="_blank" rel="noopener" class="btn btn-secondary">Better Moments (Моржи и катера) ↗</a>
+          <a href="https://brimexplorer.com" target="_blank" rel="noopener" class="btn btn-secondary">Brim Explorer (Электрокатамаран) ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#flights">Перелёты</a>
+        <a href="#itinerary">Маршрут</a>
+        <a href="#activities">Активности</a>
+        <a href="#calculator">Калькулятор</a>
+        <a href="#checklist">Чек-лист</a>
+      </div>
+      <p>Экспедиция на Шпицберген (Свальбард) • Май 2027 • Разработано для горной группы 5–6 человек</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
