@@ -214,11 +214,18 @@ Early May is Svalbard's famous **"Sunny Winter" / Spring Transition**:
 
 ---
 
-## 6. Official Booking Portals & Links
+## 6. Official Booking Portals & Verified Direct Links (Checked Nov 2026)
 
-* [Visit Svalbard - Official Activities Portal](https://en.visitsvalbard.com/things-to-do/activities)
-* [Svalbard Wildlife Expeditions (Ice Caves & Mountain Ridges)](https://wildlife.no)
-* [Better Moments (Closed RIB Walrus & Fjord Boat Safaris)](https://bettermoments.no)
-* [Brim Explorer (Silent Hybrid Catamaran)](https://brimexplorer.com)
-* [Arctic Husky Travellers (2-Day Dog Sledding Cabins)](https://arctichuskytravellers.com)
+* [Visit Svalbard - Official Activities Portal](https://en.visitsvalbard.com/)
+* [Svalbard Wildlife — Ice Cave Overnight (4,500 NOK + 600 NOK sleeping bag, 2–4 pax/guide, 17:00 pickup)](https://www.wildlife.no/product-page/ice-cave-one-night)
+* [Svalbard Wildlife — Frozen Summit: Trollsteinen (850m) & Ice Cave (1,990 NOK, 8h)](https://www.wildlife.no/product-page/frozen-hike-trollsteinen-ice-cave)
+* [Better Moments — East Coast King of the Arctic Snowmobile (Tue/Thu/Sat/Sun to May 22)](https://bettermoments.no/activity/ursus-maritimus-king-of-the-arctic/)
+* [Better Moments — Catching the Light: Midnight Sun Snowmobile (Daily Apr 19 – May 16)](https://bettermoments.no/activity/catching-the-light-midnight-sun/)
+* [Better Moments — Walrus Safari "Two Tons of Happiness" (Daily from May 1)](https://bettermoments.no/activity/walrus-safari-two-tons-of-happiness/)
+* [Brim Explorer — Svalbard Arctic Fjord Cruise (2,295 NOK, 14:30, May–Oct)](https://brimexplorer.com/destination/svalbard)
+* [Green Dog Svalbard — Husky Dog Sledding](https://greendog.no/?lang=en)
+* [Store Norske — Mine No. 3 (Gruve 3) Tour](https://gruve3.no/mine-no-3)
+* [Svalbard Bryggeri — Craft Beer Tasting (Mon/Wed/Sat 18:00, 585 NOK)](https://www.svalbardbrewery.com/)
 * [Ingeniør G. Paulsen IGP (Independent Snowmobiles & Rifles)](https://hurtigrutensvalbard.com)
+
+> **2025–2027 Regulatory Notes:** Under Svalbard's updated Environmental Regulations (in force since Jan 1, 2025), driving snowmobiles on **sea ice** in selected fjords (including Tempelfjorden and Billefjorden) is banned for visitors after **March 1**; stick strictly to overland valley corridors (e.g., Adventdalen/Sassendalen). Minimum polar bear distance is **500m** (March 1 – June 30), and **drones are banned** across all protected areas and within 5 km of Longyearbyen Airport.

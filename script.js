@@ -69,42 +69,42 @@ document.addEventListener('DOMContentLoaded', () => {
     NOK: { symbol: 'NOK', rate: 2.65 }
   };
 
-  // Base tier values per person in PLN
+  // Base tier values per person in PLN (validated 2026/2027 operator pricing)
   const budgetTiers = {
     economy: {
-      flights: 1750,
-      hotel: 1100,
-      icecave: 1450,
-      snowmobile: 650,
-      weapon: 100,
-      dogsled: 700,
-      food: 800,
-      transfers: 150
+      flights: 1850,
+      hotel: 1250,
+      icecave: 1700, // 4500 NOK own sleeping bag
+      snowmobile: 680,
+      weapon: 110,
+      dogsled: 740,
+      food: 850,
+      transfers: 160
     },
     standard: {
-      flights: 2150,
-      hotel: 1400,
-      icecave: 1600,
-      snowmobile: 750,
-      weapon: 125,
-      dogsled: 800,
-      food: 1200,
-      transfers: 175
+      flights: 2200,
+      hotel: 1550,
+      icecave: 1920, // 4500 NOK + 600 NOK sleeping bag rental
+      snowmobile: 780,
+      weapon: 130,
+      dogsled: 830,
+      food: 1250,
+      transfers: 180
     },
     premium: {
-      flights: 2350,
-      hotel: 2200,
-      icecave: 1800,
-      snowmobile: 1500, // individual sled
-      weapon: 150,
-      dogsled: 950,
-      food: 1900,
-      transfers: 200
+      flights: 2550,
+      hotel: 2300,
+      icecave: 2150,
+      snowmobile: 1580, // individual sled or East Coast safari
+      weapon: 160,
+      dogsled: 980,
+      food: 1950,
+      transfers: 220
     }
   };
 
   let currentTier = 'standard';
-  let currentGroupSize = 6;
+  let currentGroupSize = 4;
   let currentCurrency = 'PLN';
 
   const groupBtns = document.querySelectorAll('[data-group]');
@@ -115,11 +115,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const tierData = budgetTiers[currentTier];
     const curr = rates[currentCurrency];
 
+    // Odd group size (5 people) incurs single-room & odd-sled sharing surcharge (~12% on hotel & sled)
+    const isOddGroup = (currentGroupSize % 2 !== 0);
+    const hotelAdjusted = isOddGroup ? Math.round(tierData.hotel * 1.16) : tierData.hotel;
+    const sledAdjusted = (isOddGroup && currentTier !== 'premium') ? Math.round(tierData.snowmobile * 1.18) : tierData.snowmobile;
+    // Ice cave standard limit is 2-4 per guide; >4 requires private 2nd guide surcharge (~220 PLN/person)
+    const iceCaveAdjusted = (currentGroupSize > 4) ? tierData.icecave + 220 : tierData.icecave;
+
     const perPersonBase = 
       tierData.flights + 
-      tierData.hotel + 
-      tierData.icecave + 
-      tierData.snowmobile + 
+      hotelAdjusted + 
+      iceCaveAdjusted + 
+      sledAdjusted + 
       tierData.weapon + 
       tierData.dogsled + 
       tierData.food + 
@@ -147,9 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     setItem('bFlights', tierData.flights);
-    setItem('bHotel', tierData.hotel);
-    setItem('bIceCave', tierData.icecave);
-    setItem('bSnowmobile', tierData.snowmobile);
+    setItem('bHotel', hotelAdjusted);
+    setItem('bIceCave', iceCaveAdjusted);
+    setItem('bSnowmobile', sledAdjusted);
     setItem('bDogsled', tierData.dogsled);
     setItem('bFood', tierData.food);
   }
