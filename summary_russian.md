@@ -123,6 +123,10 @@
 | 🚤 **Сафари к моржам на тёплом катере РИБ** *(5ч)* | С **1 мая** (**Ежедневно**) | ~2 600 – 2 900 NOK (~980–1 100 PLN) | [bettermoments.no — Walrus Safari](https://bettermoments.no/activity/walrus-safari-two-tons-of-happiness/) |
 | 🚢 **Электрокатамаран по Исфьорду** *(4ч, старт 14:30)* | С **1 мая** (**Ежедневно**) | **2 295 NOK** (~865 PLN) | [brimexplorer.com — Svalbard](https://brimexplorer.com/destination/svalbard) |
 | ⛏️ **Угольная шахта Gruve 3** *(3ч)* | Круглый год | ~920 – 990 NOK (~360 PLN) | [gruve3.no — Mine No. 3](https://gruve3.no/mine-no-3) |
+| 🔥 **Плавучая дровяная баня SvalBad + ныряние в океан** *(1–2ч)* | Круглый год *(идеально в День 4 после пещеры!)* | **300 NOK** drop-in / **3 000 NOK вся баня** на 2ч (~165–280 PLN/чел) | [svalbad.no — Floating Sauna](https://svalbad.no/) |
+| 🛟 **Arctic Float: Дрейф среди льдин в спас-костюме** *(2–3ч)* | Зимне-весенний сезон | **1 490 NOK** (~565 PLN) | [wildlife.no — Arctic Float](https://www.wildlife.no/product-page/arctic-float) |
+| 🌱 **Хранилище Судного дня (Seed Vault) + хребет** *(3–4ч)* | Круглый год | **1 350 NOK** (~510 PLN) | [wildlife.no — Seed Vault Hike](https://www.wildlife.no/product-page/blomsterdalen-hike-and-global-seed-vault) |
+| 🧭 **Ню-Олесунн (79° с.ш.) — самый северный посёлок Земли** *(12ч)* | Со **2 мая** (**Чт и Вс** — попадает на Чт 6 мая!) | **~7 500 NOK** (~2 850 PLN) | [bettermoments.no — Ny-Ålesund](https://bettermoments.no/activity/ny-alesund-the-northernmost-town-in-the-world/) |
 | 🍺 **Дегустация на пивоварне Svalbard Bryggeri** | **Только Пн, Ср, Сб в 18:00** | **585 NOK** (~220 PLN) | [svalbardbrewery.com](https://www.svalbardbrewery.com/) |
 
 ---
