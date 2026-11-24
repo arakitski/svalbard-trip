@@ -69,10 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
     NOK: { symbol: 'NOK', rate: 2.65 }
   };
 
-  // Base tier values per person in PLN (validated 2026/2027 operator pricing)
+  // Base tier values per person in PLN (validated 2026/2027 operator pricing + Oslo meetup night)
   const budgetTiers = {
     economy: {
-      flights: 1850,
+      flights: 1620, // shared bags Black Week
+      oslo: 210,     // Oslo Day 0 hostel/Twin + Vy train
       hotel: 1250,
       icecave: 1700, // 4500 NOK own sleeping bag
       snowmobile: 680,
@@ -82,7 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
       transfers: 160
     },
     standard: {
-      flights: 2200,
+      flights: 1840, // avg WAW/KRK/AMS w/ shared 23kg bags
+      oslo: 245,     // Oslo Day 0 Twin hotel + Vy train
       hotel: 1550,
       icecave: 1920, // 4500 NOK + 600 NOK sleeping bag rental
       snowmobile: 780,
@@ -92,7 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
       transfers: 180
     },
     premium: {
-      flights: 2550,
+      flights: 2350, // each w/ 23kg bag
+      oslo: 360,     // Radisson Blu / boutique Oslo + Flytoget
       hotel: 2300,
       icecave: 2150,
       snowmobile: 1580, // individual sled or East Coast safari
@@ -104,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   let currentTier = 'standard';
-  let currentGroupSize = 4;
+  let currentGroupSize = 7;
   let currentCurrency = 'PLN';
 
   const groupBtns = document.querySelectorAll('[data-group]');
@@ -131,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sledMultiplier = 1.10; // 8 solo sleds triggers 2nd guide on guided routes
     }
 
+    const osloAdjusted = Math.round(tierData.oslo * hotelMultiplier);
     const hotelAdjusted = Math.round(tierData.hotel * hotelMultiplier);
     const sledAdjusted = Math.round(tierData.snowmobile * sledMultiplier);
 
@@ -141,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const perPersonBase = 
       tierData.flights + 
+      osloAdjusted +
       hotelAdjusted + 
       iceCaveAdjusted + 
       sledAdjusted + 
@@ -171,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     setItem('bFlights', tierData.flights);
+    setItem('bOslo', osloAdjusted);
     setItem('bHotel', hotelAdjusted);
     setItem('bIceCave', iceCaveAdjusted);
     setItem('bSnowmobile', sledAdjusted);
