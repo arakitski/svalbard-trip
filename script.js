@@ -115,12 +115,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const tierData = budgetTiers[currentTier];
     const curr = rates[currentCurrency];
 
-    // Odd group size (5 people) incurs single-room & odd-sled sharing surcharge (~12% on hotel & sled)
-    const isOddGroup = (currentGroupSize % 2 !== 0);
-    const hotelAdjusted = isOddGroup ? Math.round(tierData.hotel * 1.16) : tierData.hotel;
-    const sledAdjusted = (isOddGroup && currentTier !== 'premium') ? Math.round(tierData.snowmobile * 1.18) : tierData.snowmobile;
-    // Ice cave standard limit is 2-4 per guide; >4 requires private 2nd guide surcharge (~220 PLN/person)
-    const iceCaveAdjusted = (currentGroupSize > 4) ? tierData.icecave + 220 : tierData.icecave;
+    // Exact odd-group single-room & odd-sled math by group size (4, 5, 6, 7, 8):
+    // Single room costs ~80% extra of 1 twin share, divided across group size:
+    // 5 pax -> +0.8/5 = +16%; 7 pax -> +0.8/7 = +11.4%
+    let hotelMultiplier = 1;
+    let sledMultiplier = 1;
+    if (currentGroupSize === 5) {
+      hotelMultiplier = 1.16;
+      if (currentTier !== 'premium') sledMultiplier = 1.20; // 3 sleds for 5 people vs 0.5 sled/person
+    } else if (currentGroupSize === 7) {
+      hotelMultiplier = 1.114;
+      if (currentTier !== 'premium') sledMultiplier = 1.143; // 4 sleds for 7 people vs 0.5 sled/person
+      else sledMultiplier = 1.12; // 7 solo sleds triggers 2nd guide on guided routes
+    } else if (currentGroupSize === 8 && currentTier === 'premium') {
+      sledMultiplier = 1.10; // 8 solo sleds triggers 2nd guide on guided routes
+    }
+
+    const hotelAdjusted = Math.round(tierData.hotel * hotelMultiplier);
+    const sledAdjusted = Math.round(tierData.snowmobile * sledMultiplier);
+
+    // Ice cave standard limit is 2-4 per guide; >4 requires private 2nd guide (~1400 PLN split across group)
+    const iceCaveAdjusted = (currentGroupSize > 4)
+      ? tierData.icecave + Math.round(1400 / currentGroupSize)
+      : tierData.icecave;
 
     const perPersonBase = 
       tierData.flights + 
