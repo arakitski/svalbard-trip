@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Покупка Авиабилетов: Варшава + Краков + Амстердам → Осло → Шпицберген</title>
+  <meta name="description" content="Полный центр покупки авиабилетов на Шпицберген: стыковка группы из Варшавы (3–5 чел.), Кракова (2 чел.) и Амстердама (1 чел.) в Осло за 1 день до общего вылета в Лонгйир.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .hub-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 24px;
+    }
+    .city-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-subtle);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .city-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-3px);
+    }
+    .city-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .city-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .option-box {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .option-box.recommended {
+      background: rgba(56, 189, 248, 0.07);
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+    .option-box.danger {
+      background: rgba(244, 63, 94, 0.08);
+      border-color: rgba(244, 63, 94, 0.35);
+    }
+    .option-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .option-airline {
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.98rem;
+    }
+    .option-price {
+      font-weight: 800;
+      color: var(--accent-cyan);
+      font-size: 0.95rem;
+    }
+    .option-details {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .window-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .window-tab {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      cursor: pointer;
+      text-align: left;
+      color: var(--text-main);
+      transition: all 0.2s ease;
+    }
+    .window-tab:hover {
+      border-color: var(--border-accent);
+    }
+    .window-tab.active {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.22), rgba(37, 99, 235, 0.25));
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.18);
+    }
+    .window-tab-title {
+      font-weight: 800;
+      font-size: 1.02rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .window-tab-sub {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+    .matrix-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-glass);
+    }
+    table.matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(14, 22, 38, 0.88);
+      font-size: 0.92rem;
+    }
+    table.matrix-table th, table.matrix-table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    table.matrix-table th {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--accent-cyan);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    table.matrix-table tr:last-child td {
+      border-bottom: none;
+    }
+    .step-protocol-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+    }
+    .protocol-card {
+      background: rgba(14, 22, 38, 0.85);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      position: relative;
+    }
+    .protocol-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .badge-danger {
+      background: rgba(244, 63, 94, 0.18);
+      color: #fb7185;
+      border: 1px solid rgba(244, 63, 94, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-icon">✈️</span>
+        <span>SVALBARD FLIGHTS HUB</span>
+      </a>
+      <button class="nav-btn-mobile" id="mobileMenuBtn" aria-label="Открыть меню">☰</button>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link">← Главная</a></li>
+          <li><a href="#windows" class="nav-link">Окна дат</a></li>
+          <li><a href="#cities" class="nav-link">3 Города → Осло</a></li>
+          <li><a href="#svalbard-leg" class="nav-link">Осло → Шпицберген</a></li>
+          <li><a href="#oslo-meetup" class="nav-link">Встреча в Осло</a></li>
+          <li><a href="#flight-calc" class="nav-link">Калькулятор билетов</a></li>
+          <li><a href="#protocol" class="nav-link">Как покупать</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" style="padding: 60px 0 40px;">
+    <div class="container">
+      <div class="hero-badge">
+        <span>🔥 Black Week 2026 до 1 декабря</span>
+        <span>•</span>
+        <span>Сбор в Осло (OSL) за 1 день</span>
+        <span>•</span>
+        <span>6–8 человек</span>
+      </div>
+      <h1>Центр Покупки Авиабилетов</h1>
+      <p class="hero-subtitle">
+        Полная схема стыковки трёх городов — <strong>Варшава (3–5 чел.)</strong>, <strong>Краков (2 чел.)</strong> и <strong>Амстердам (1 чел.)</strong> — со встречей за 1 день в Осло и общим перелётом всей командой в одном самолёте на Шпицберген.
+      </p>
+      <div class="hero-actions" style="margin-bottom: 35px;">
+        <a href="#flight-calc" class="btn btn-primary">Рассчитать билеты на всех</a>
+        <a href="#cities" class="btn btn-secondary">Рейсы из Варшавы, Кракова, Амстердама</a>
+        <a href="index.html" class="btn btn-secondary">← Вернуться к программе тура</a>
+      </div>
+
+      <!-- KPI Summary -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon">🇵🇱</div>
+          <div class="kpi-value">Варшава: 3–5 чел.</div>
+          <div class="kpi-label">WAW → OSL (LOT / Norwegian)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">🏰</div>
+          <div class="kpi-value">Краков: 2 чел.</div>
+          <div class="kpi-label">KRK → OSL (Norwegian / Wizz)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">🇳🇱</div>
+          <div class="kpi-value">Амстердам: 1 чел.</div>
+          <div class="kpi-label">AMS → OSL (Norwegian / SAS / KLM)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">🐻‍❄️</div>
+          <div class="kpi-value">Вместе: 6–8 чел.</div>
+          <div class="kpi-label">OSL ↔ LYR (Один общий рейс!)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Date Windows -->
+  <section class="section" id="windows">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Шаг 1 • Выбор дат</span>
+        <h2 class="section-title">4 Варианта Дат со Встречей в Осло за 1 День</h2>
+        <p class="section-desc">Выберите окно дат — таблица синхронизации группы обновится автоматически.</p>
+      </div>
+
+      <div class="window-tabs" id="windowTabs">
+        <button class="window-tab active" data-window="w1">
+          <div class="badge badge-success" style="margin-bottom: 8px;">⭐ ОПТИМАЛЬНЫЙ ВЫБОР</div>
+          <div class="window-tab-title">Окно 1: Сбор Вс 2 мая → 3–7 мая</div>
+          <div class="window-tab-sub">Встреча в Осло: Вс 2 мая 2027<br>Шпицберген: Пн 3 мая – Пт 7 мая (5Д/4Н)</div>
+        </button>
+
+        <button class="window-tab" data-window="w2">
+          <div class="badge badge-warning" style="margin-bottom: 8px;">ПОЛЬСКАЯ МАЙОВКА</div>
+          <div class="window-tab-title">Окно 2: Сбор Чт 29 апр → 30 апр–4 мая</div>
+          <div class="window-tab-sub">Встреча в Осло: Чт 29 апр 2027<br>Шпицберген: Пт 30 апр – Вт 4 мая (5Д/4Н)</div>
+        </button>
+
+        <button class="window-tab" data-window="w3">
+          <div class="badge badge-info" style="margin-bottom: 8px;">БЕЗ ПРАЗДНИКА 6 МАЯ</div>
+          <div class="window-tab-title">Окно 3: Сбор Пт 30 апр → 1–5 мая</div>
+          <div class="window-tab-sub">Встреча в Осло: Пт 30 апр 2027<br>Шпицберген: Сб 1 мая – Ср 5 мая (5Д/4Н)</div>
+        </button>
+
+        <button class="window-tab" data-window="w4">
+          <div class="badge badge-info" style="margin-bottom: 8px;">КОМПАКТНЫЙ (4Д/3Н)</div>
+          <div class="window-tab-title">Окно 4: Сбор Сб 1 мая → 2–5 мая</div>
+          <div class="window-tab-sub">Встреча в Осло: Сб 1 мая 2027<br>Шпицберген: Вс 2 мая – Ср 5 мая (4Д/3Н)</div>
+        </button>
+      </div>
+
+      <!-- Dynamic Timeline Banner -->
+      <div class="glass-panel" id="windowSummaryPanel">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 18px;">
+          <h3 id="winTitle" style="font-size: 1.3rem; color: #fff;">Окно 1: Встреча в Осло Вс 2 мая → Шпицберген Пн 3 мая – Пт 7 мая 2027</h3>
+          <span class="badge badge-success" id="winBadge">Самые дешёвые тарифы OSL↔LYR и будний прилёт!</span>
+        </div>
+        <div class="matrix-table-wrap">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Этап маршрута</th>
+                <th>Дата (2027)</th>
+                <th>Кто летит</th>
+                <th>Рекомендуемые рейсы и время</th>
+                <th>Комментарий</th>
+              </tr>
+            </thead>
+            <tbody id="winTableBody">
+              <tr>
+                <td><strong>1. Прилёт в Осло (День 0)</strong></td>
+                <td id="tdDay0">Вс, 2 мая</td>
+                <td>Варшава (3–5), Краков (2), Амстердам (1)</td>
+                <td>Все прилетают в <strong>Oslo Gardermoen (OSL)</strong> днём или к вечеру (14:00–19:30)</td>
+                <td>Общий ужин в Осло, ночёвка в отеле у OSL или в центре, <strong>0% риска опоздать</strong>!</td>
+              </tr>
+              <tr>
+                <td><strong>2. Общий вылет в Арктику</strong></td>
+                <td id="tdOut">Пн, 3 мая</td>
+                <td><strong>Вся группа (6–8 чел.)</strong></td>
+                <td><strong>Norwegian DY390</strong> (~10:20 → 13:20 LYR) <em>или</em> <strong>SAS SK4490</strong> (~11:15 → 14:15 LYR)</td>
+                <td>Вся команда летит в одном самолёте! В Лонгйире уже с обеда.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Общий возврат в Осло</strong></td>
+                <td id="tdBack">Пт, 7 мая</td>
+                <td><strong>Вся группа (6–8 чел.)</strong></td>
+                <td>⭐ <strong>Norwegian DY391 (14:05 → 17:05 OSL)</strong> <em>или</em> SAS SK4491 (14:45 → 17:45 OSL)</td>
+                <td><strong>Важно:</strong> прилёт в <strong>17:05</strong> на DY391 позволяет всем 3 городам улететь домой тем же вечером!</td>
+              </tr>
+              <tr>
+                <td><strong>4. Разлёт по домам из OSL</strong></td>
+                <td id="tdHome">Пт, 7 мая (вечер) <em>или</em> Сб утро</td>
+                <td>WAW / KRK / AMS</td>
+                <td>• <strong>WAW:</strong> LOT LO484 (20:35→22:35)<br>• <strong>KRK:</strong> Norwegian DY1042 (19:05→21:10)<br>• <strong>AMS:</strong> KLM KL1206 (19:05→20:55)</td>
+                <td>Если обратный рейс SAS (17:45) — Варшава улетает в 20:35, а Краков/Амстердам могут переночевать или лететь утром.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p id="winNote" style="margin-top: 14px; font-size: 0.9rem; color: var(--text-muted);">
+          💡 <strong>Плюс этого окна:</strong> Прилёт в понедельник 3 мая (прокат IGP, оружейный магазин и Nordpolet открыты по буднему графику + дегустация пивоварни в 18:00), а после польской Майовки цены из Варшавы и Кракова заметно ниже, чем 29–30 апреля.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Flights From 3 Cities to Oslo -->
+  <section class="section" id="cities">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Шаг 2 • Подлёт в точку сбора (День 0)</span>
+        <h2 class="section-title">Варианты Перелётов в Осло из 3 Городов</h2>
+        <p class="section-desc">Критическое правило для всех трёх подгрупп: аэропорт прилёта — строго <strong>Oslo Gardermoen (OSL)</strong>!</p>
+      </div>
+
+      <div class="hub-grid-3">
+        <!-- WARSAW -->
+        <div class="city-card">
+          <div>
+            <div class="city-header">
+              <div class="city-name">🇵🇱 Варшава (WAW)</div>
+              <span class="badge badge-info">3–5 человек</span>
+            </div>
+
+            <div class="option-box recommended">
+              <div class="option-top">
+                <span class="option-airline">⭐ Вариант W1: LOT Polish Airlines</span>
+                <span class="option-price">~650–920 PLN (с баг.)</span>
+              </div>
+              <div class="option-details">
+                • <strong>Туда (День 0):</strong> <code>LO 481</code> (07:40→09:50 OSL) — целый день гулять по Осло! Или <code>LO 483</code> (16:50→19:00 OSL) прямо к общему ужину.<br>
+                • <strong>Обратно:</strong> <code>LO 484</code> (<strong>20:35 OSL → 22:35 WAW</strong>) — идеальный запас 3–3.5 часа после любого рейса со Шпицбергена!<br>
+                • Без сдаваемого багажа (8 кг кабина): <strong>~380–580 PLN</strong> туда-обратно.
+              </div>
+            </div>
+
+            <div class="option-box recommended">
+              <div class="option-top">
+                <span class="option-airline">🔥 Вариант W2: Norwegian (Black Week)</span>
+                <span class="option-price">~560–780 PLN (с баг.)</span>
+              </div>
+              <div class="option-details">
+                • <strong>Прямой WAW ↔ OSL:</strong> <code>DY1051</code> (~12:05→14:05 или ~14:25→16:25 OSL).<br>
+                • Попадает под распродажу <strong>Black Week (до 15 июня 2027)</strong>!<br>
+                • Обратный вечерний слот (~18:50→20:50 WAW) можно объединить с <code>DY391</code> в единый обратный билет Norwegian!<br>
+                • Тариф LowFare (ручная кладь): <strong>~280–450 PLN</strong> туда-обратно.
+              </div>
+            </div>
+
+            <div class="option-box danger">
+              <div class="option-top">
+                <span class="option-airline">⛔ НЕ БРАТЬ: Wizz Air / Ryanair</span>
+                <span class="badge badge-danger">Torp TRF!</span>
+              </div>
+              <div class="option-details">
+                Из Варшавы (WAW и Modlin WMI) Wizz Air и Ryanair прилетают в <strong>Sandefjord Torp (TRF)</strong> за 120 км от Осло (+270 PLN/чел на поезд туда-обратно и +4 часа дороги).
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+            <a href="https://www.lot.com" target="_blank" rel="noopener" class="activity-btn" style="flex: 1;">LOT.com ↗</a>
+            <a href="https://www.norwegian.com" target="_blank" rel="noopener" class="activity-btn" style="flex: 1;">Norwegian ↗</a>
+          </div>
+        </div>
+
+        <!-- KRAKOW -->
+        <div class="city-card">
+          <div>
+            <div class="city-header">
+              <div class="city-name">🏰 Краков (KRK)</div>
+              <span class="badge badge-info">2 человека</span>
+            </div>
+
+            <div class="option-box recommended">
+              <div class="option-top">
+                <span class="option-airline">⭐ Вариант K1: Norwegian (Прямой в OSL)</span>
+                <span class="option-price">~580–820 PLN (с баг.)</span>
+              </div>
+              <div class="option-details">
+                • <strong>Туда (День 0):</strong> <code>DY1041</code> (<strong>12:45 KRK → 14:50 OSL</strong>) или вечерний <code>DY1043</code> (20:40 → 22:45 OSL).<br>
+                • <strong>Обратно:</strong> <code>DY1042</code> (<strong>19:05 OSL → 21:10 KRK</strong>)!<br>
+                • 💡 <strong>Супер-лайфхак для Кракова:</strong> Берите туда отдельный билет <code>KRK→OSL</code> на День 0, а <strong>обратный путь оформите единым билетом Norwegian <code>LYR → OSL → KRK</code></strong> (<code>DY391 14:05→17:05</code> + <code>DY1042 19:05→21:10</code>) — тогда багаж перегрузят сами и стыковка 2ч защищена!<br>
+                • Без багажа: <strong>~300–480 PLN</strong> туда-обратно.
+              </div>
+            </div>
+
+            <div class="option-box">
+              <div class="option-top">
+                <span class="option-airline">✅ Вариант K2: Wizz Air (Прямой в OSL!)</span>
+                <span class="option-price">~500–720 PLN (с баг.)</span>
+              </div>
+              <div class="option-details">
+                • В отличие от Варшавы, из Кракова рейс <strong>Wizz Air <code>W6 2033 / W6 2034</code> летит прямо в главный аэропорт OSL Gardermoen!</strong><br>
+                • <strong>Туда (День 0):</strong> ~13:10 → 15:20 OSL (отлично для сбора в День 0!).<br>
+                • <strong>Минус обратно:</strong> вылет <code>W6 2034</code> из OSL в ~15:50 (раньше прилёта со Шпицбергена — подходит только если остаться на ночь в Осло или скомбинировать Wizz туда + Norwegian обратно!).
+              </div>
+            </div>
+
+            <div class="option-box danger">
+              <div class="option-top">
+                <span class="option-airline">⛔ НЕ БРАТЬ: Ryanair из Кракова</span>
+                <span class="badge badge-danger">Torp TRF!</span>
+              </div>
+              <div class="option-details">
+                Ryanair из Кракова летит в далёкий аэропорт <strong>Torp (TRF)</strong> (110 км от Осло). Проверяйте код аэропорта — нужен только <strong>OSL</strong>!
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+            <a href="https://www.norwegian.com" target="_blank" rel="noopener" class="activity-btn" style="flex: 1;">Norwegian ↗</a>
+            <a href="https://www.wizzair.com" target="_blank" rel="noopener" class="activity-btn" style="flex: 1;">Wizz Air (OSL) ↗</a>
+          </div>
+        </div>
+
+        <!-- AMSTERDAM -->
+        <div class="city-card">
+          <div>
+            <div class="city-header">
+              <div class="city-name">🇳🇱 Амстердам (AMS)</div>
+              <span class="badge badge-info">1 человек</span>
+            </div>
+
+            <div class="option-box recommended">
+              <div class="option-top">
+                <span class="option-airline">⭐ Вариант A1: Norwegian / SAS (Туда) + KLM (Обратно)</span>
+                <span class="option-price">~€195–€275 (~840–1180 PLN)</span>
+              </div>
+              <div class="option-details">
+                • Прямой перелёт всего <strong>1ч 45м</strong> (7–8 прямых рейсов в день!).<br>
+                • <strong>Туда (День 0):</strong> <strong>Norwegian</strong> или <strong>SAS</strong> днём/вечером (дешевле по акции Black Week, от €75–€110 в одну сторону).<br>
+                • <strong>Обратно в тот же вечер:</strong> у <strong>KLM рейс <code>KL1206</code> вылетает в ~19:00/19:05 OSL → 20:55 AMS</strong>! При прилёте со Шпицбергена на <code>DY391</code> в 17:05 ровно 2 часа на пересадку в OSL.
+              </div>
+            </div>
+
+            <div class="option-box">
+              <div class="option-top">
+                <span class="option-airline">✅ Вариант A2: KLM туда-обратно</span>
+                <span class="option-price">~€230–€320 (с баг.)</span>
+              </div>
+              <div class="option-details">
+                • 4–5 ежедневных рейсов <code>AMS ↔ OSL</code> (вылеты из Амстердама в ~07:00, 10:00, 14:20, 18:50; обратно вечерний <code>KL1206</code> в 19:05).<br>
+                • Максимальная гибкость по времени сбора с ребятами из Варшавы и Кракова!
+              </div>
+            </div>
+
+            <div class="option-box">
+              <div class="option-top">
+                <span class="option-airline">✅ Вариант A3: Единый SAS (AMS–OSL–LYR)</span>
+                <span class="option-price">~€430–€540 весь путь</span>
+              </div>
+              <div class="option-details">
+                • Если вся группа выбирает рейс <strong>SAS</strong> из Осло на Шпицберген, участник из Амстердама может проверить как раздельную покупку (со стоповером 1 день в Осло через Multi-city), так и отдельные сегменты.
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+            <a href="https://www.klm.com" target="_blank" rel="noopener" class="activity-btn" style="flex: 1;">KLM ↗</a>
+            <a href="https://www.norwegian.com" target="_blank" rel="noopener" class="activity-btn" style="flex: 1;">Norwegian ↗</a>
+            <a href="https://www.flysas.com" target="_blank" rel="noopener" class="activity-btn" style="flex: 1;">SAS ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Common Flight OSL <-> LYR -->
+  <section class="section" id="svalbard-leg">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Шаг 3 • Главный общий перелёт (6–8 человек вместе)</span>
+        <h2 class="section-title">Осло (OSL) ↔ Шпицберген (LYR): Какой Рейс Выбрать Всей Группе?</h2>
+        <p class="section-desc">Все участники уже в Осло после ночёвки — утром спокойно идём вместе на паспортный контроль Gate F и летим в одном салоне!</p>
+      </div>
+
+      <div class="flight-timeline">
+        <!-- Combo 1: All Norwegian -->
+        <div class="flight-route-card" style="border-color: rgba(56, 189, 248, 0.5);">
+          <div class="route-header">
+            <div class="route-title">
+              <span>🏆 Опция S1 (Лучшая для разлёта вечером!): Norwegian Туда + Обратно</span>
+              <span class="badge badge-success">РЕКОМЕНДУЕМ</span>
+            </div>
+            <span class="badge badge-warning">~1 285 – 1 700 PLN / чел. (с багажом 23 кг)</span>
+          </div>
+          <div class="flight-legs">
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">~09:35/10:20 → 13:20</span>
+                <span class="flight-carrier">Norwegian DY390</span>
+              </div>
+              <div class="flight-airport">Прямой OSL → LYR (3ч 00м). Летает обычно по Пн, Ср, Пт, Вс (сверьте точный слот в календаре на май 2027).</div>
+            </div>
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">14:05 → 17:05 OSL</span>
+                <span class="flight-carrier">Norwegian DY391</span>
+              </div>
+              <div class="flight-airport"><strong>Ключевое преимущество:</strong> посадка в Осло в <strong>17:05</strong> (на 40 минут раньше SAS)! Это позволяет Кракову (<code>DY1042</code> 19:05), Амстердаму (<code>KL1206</code> 19:05) и Варшаве (<code>LO484</code> 20:35) улететь домой в тот же вечер!</div>
+            </div>
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">Тариф LowFare+</span>
+                <span class="flight-carrier">Багаж 23 кг + 10 кг</span>
+              </div>
+              <div class="flight-airport">Включает сдаваемый чемодан 23 кг, ручную кладь 10 кг на полке и выбор места рядом для всей компании.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Combo 2: All SAS -->
+        <div class="flight-route-card">
+          <div class="route-header">
+            <div class="route-title">
+              <span>✈️ Опция S2 (Самый низкий базовый тариф): SAS Туда + Обратно</span>
+              <span class="badge badge-info">От €87 в одну сторону (без баг.)</span>
+            </div>
+            <span class="badge badge-info">~1 200 – 1 620 PLN / чел. (Go Smart с 23 кг)</span>
+          </div>
+          <div class="flight-legs">
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">~10:55/11:15 → 14:15</span>
+                <span class="flight-carrier">SAS SK4490</span>
+              </div>
+              <div class="flight-airport">Прямой OSL → LYR (~3ч 05м). Можно выспаться на час дольше утром после вечера в Осло!</div>
+            </div>
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">14:45 → 17:45 OSL</span>
+                <span class="flight-carrier">SAS SK4491</span>
+              </div>
+              <div class="flight-airport">Варшава спокойно успевает на <code>LO 484</code> (20:35). Для Кракова (19:05) и Амстердама (19:05) стыковка 1ч 20м с багажом короткая — лучше лететь без сдаваемого багажа (см. шеринг ниже!) или вылетать утром следующего дня.</div>
+            </div>
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">SAS Go Smart</span>
+                <span class="flight-carrier">Багаж 23 кг + 8 кг</span>
+              </div>
+              <div class="flight-airport">Отличная частота рейсов по дням недели (если выбран вторник или четверг, когда Norwegian не всегда летит).</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Combo 3: Mix -->
+        <div class="flight-route-card">
+          <div class="route-header">
+            <div class="route-title">
+              <span>🔀 Опция S3 (Гибрид — Максимум гибкости): SAS Туда + Norwegian Обратно</span>
+              <span class="badge badge-info">Любые дни недели</span>
+            </div>
+            <span class="badge badge-info">~1 250 – 1 650 PLN / чел.</span>
+          </div>
+          <div class="flight-legs">
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">Туда: SAS 11:15</span>
+                <span class="flight-carrier">Позднее утро</span>
+              </div>
+              <div class="flight-airport">Комфортный утренний старт из Осло без раннего подъёма.</div>
+            </div>
+            <div class="flight-leg">
+              <div class="flight-time-row">
+                <span class="flight-time">Обратно: DY391 14:05</span>
+                <span class="flight-carrier">Прилёт в 17:05 OSL</span>
+              </div>
+              <div class="flight-airport">Даёт ранний прилёт в Осло в 17:05 для вечернего разлёта всех трёх городов! Так как билеты внутри Норвегии всё равно one-way по цене, миксовать SAS и Norwegian абсолютно выгодно (без наценки!).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Smart Group Baggage Sharing Tip -->
+      <div class="glass-panel" style="margin-top: 28px; border-color: rgba(16, 185, 129, 0.4);">
+        <h3 style="font-size: 1.2rem; color: var(--accent-emerald); margin-bottom: 10px;">💡 Гениальный групповой лайфхак по багажу («Шеринг чемоданов в Осло»)!</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Раз вы все встречаетесь в Осло за 1 день до вылета: <strong>не обязательно покупать сдаваемый багаж 23 кг каждому из 6–8 человек!</strong>
+          Достаточно взять <strong>3 больших сдаваемых баула/чемодана по 23 кг на всю группу</strong> (например, на ребят из Варшавы, у которых длинная вечерняя пересадка 20:35 на обратном пути!) и сложить туда все общие треккинговые палки, ножи, термосы, кремы и тяжёлые горные ботинки. А участник из <strong>Амстердама</strong> и ребята из <strong>Кракова</strong> могут лететь с <strong>ручной кладью 8–10 кг</strong> — это экономит ~1 200–1 800 PLN на группу И позволяет Амстердаму и Кракову на обратном пути за 15 минут пройти контроль в OSL без ожидания ленты багажа!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Oslo Meetup Plan (Day 0) -->
+  <section class="section" id="oslo-meetup">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">День 0 • Общий сбор в Норвегии</span>
+        <h2 class="section-title">Где Встречаемся и Ночуем в Осло?</h2>
+        <p class="section-desc">Два проверенных сценария на день сбора перед вылетом в Арктику.</p>
+      </div>
+
+      <div class="calc-container">
+        <div class="glass-panel" style="margin-bottom: 0;">
+          <span class="badge badge-success" style="margin-bottom: 10px;">Вариант Осло А • Вечер в городе + Отель у аэропорта</span>
+          <h3 style="color: #fff; font-size: 1.25rem; margin-bottom: 12px;">Прогулка по Осло и сон в 5 мин от терминала</h3>
+          <ul style="color: var(--text-muted); margin-left: 18px; line-height: 1.8; font-size: 0.93rem;">
+            <li><strong>14:00–16:00:</strong> Все прилетают в <code>OSL</code>, сбрасывают тяжёлые сумки в отеле у терминала (<em>Comfort Hotel RunWay</em> или <em>Radisson RED Oslo Airport</em>).</li>
+            <li><strong>16:30–21:30:</strong> Поезд <code>Vy</code> (23 мин, ~129 NOK) прямо на <code>Oslo S</code>: крыша Оперного театра, набережная Aker Brygge, плавучие сауны Осло-фьорда и общий ужин.</li>
+            <li><strong>22:00:</strong> Возврат на поезде к аэропорту.</li>
+            <li><strong>Утро вылета (08:30):</strong> Без поездов и пробок за 5 минут доходите до стойки сдачи багажа и паспортного контроля <code>Gate F</code>!</li>
+            <li><strong>Цена отеля у OSL:</strong> ~210–270 PLN / чел. в Twin (проверьте скидку до -40% по Norwegian Reward!).</li>
+          </ul>
+        </div>
+
+        <div class="glass-panel" style="margin-bottom: 0;">
+          <span class="badge badge-info" style="margin-bottom: 10px;">Вариант Осло Б • Отель / Апартаменты в центре Осло</span>
+          <h3 style="color: #fff; font-size: 1.25rem; margin-bottom: 12px;">Ночёвка в центре у вокзала Oslo S</h3>
+          <ul style="color: var(--text-muted); margin-left: 18px; line-height: 1.8; font-size: 0.93rem;">
+            <li>Все сразу с самолётов садятся в региональный поезд <code>Vy</code> (линии R12/R13/RE10, билет в приложении Entur/Vy <strong>вдвое дешевле</strong> экспресса Flytoget, а идёт всего на 3 минуты дольше — 23 мин!).</li>
+            <li>Заселение в сетевой отель у вокзала (<em>Comfort Hotel Karl Johan / Citybox Oslo / Anker Apartments</em> на 6–8 человек).</li>
+            <li>Вечер в барах Grünerløkka или фуд-холле <em>Mathallen Oslo</em>.</li>
+            <li><strong>Утро вылета:</strong> Поезд с <code>Oslo S</code> в <strong>07:54 → 08:17 OSL</strong> (для рейса 10:20) или <strong>08:34 → 08:57 OSL</strong> (для рейса 11:15).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Interactive Multi-City Ticket Calculator -->
+  <section class="section" id="flight-calc">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Калькулятор покупки билетов</span>
+        <h2 class="section-title">Точный Расчёт Перелётов и Отеля в Осло по Городам</h2>
+        <p class="section-desc">Выберите число людей из Варшавы (3–5), режим багажа и валюту.</p>
+      </div>
+
+      <div class="glass-panel">
+        <div class="calc-container">
+          <div class="calc-controls">
+            <div class="control-group">
+              <label class="control-label">Участники из Варшавы (WAW) — плюс Краков (2) и Амстердам (1):</label>
+              <div class="btn-group" id="wawCountGroup">
+                <button class="btn-toggle" data-waw="3">3 из Варшавы (Всего 6 чел.)</button>
+                <button class="btn-toggle active" data-waw="4">4 из Варшавы (Всего 7 чел.)</button>
+                <button class="btn-toggle" data-waw="5">5 из Варшавы (Всего 8 чел.)</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Стратегия багажа:</label>
+              <div class="btn-group" id="bagModeGroup">
+                <button class="btn-toggle" data-bag="all">Каждому 23 кг</button>
+                <button class="btn-toggle active" data-bag="shared">Шеринг (1 баул 23 кг на 2 чел.) ⭐</button>
+                <button class="btn-toggle" data-bag="light">Только ручная кладь</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Ночёвка сбора в Осло (День 0):</label>
+              <div class="btn-group" id="osloStayGroup">
+                <button class="btn-toggle active" data-oslo="yes">Включить 1 ночь отеля в Осло + поезд</button>
+                <button class="btn-toggle" data-oslo="no">Считать только авиабилеты</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Валюта расчёта:</label>
+              <div class="btn-group" id="fcCurrGroup">
+                <button class="btn-toggle active" data-fccurr="PLN">PLN (zł)</button>
+                <button class="btn-toggle" data-fccurr="EUR">EUR (€)</button>
+                <button class="btn-toggle" data-fccurr="NOK">NOK (kr)</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-result-box">
+            <div>
+              <div class="calc-total-label">Общий бюджет перелётов всей группы (<span id="fcTotalPax">7</span> чел.):</div>
+              <div class="calc-total-value" id="fcGrandTotal">15 190 PLN</div>
+              <div class="calc-subtotal-value" id="fcAvgPerPerson">В среднем на участника: ~2 170 PLN</div>
+            </div>
+
+            <ul class="calc-breakdown-list">
+              <li class="calc-breakdown-item">
+                <span>🇵🇱 Из Варшавы (на 1 чел. все билеты <span class="oslo-lbl">+ Осло</span>):</span>
+                <span id="fcWawPerPax">2 120 PLN</span>
+              </li>
+              <li class="calc-breakdown-item">
+                <span>🏰 Из Кракова (на 1 чел. все билеты <span class="oslo-lbl">+ Осло</span>):</span>
+                <span id="fcKrkPerPax">2 150 PLN</span>
+              </li>
+              <li class="calc-breakdown-item">
+                <span>🇳🇱 Из Амстердама (на 1 чел. все билеты <span class="oslo-lbl">+ Осло</span>):</span>
+                <span id="fcAmsPerPax">2 410 PLN</span>
+              </li>
+              <li class="calc-breakdown-item" style="padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.15);">
+                <span>✈️ Из них общий перелёт OSL ↔ LYR (на 1 чел.):</span>
+                <span id="fcLyrLeg">1 320 PLN</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Step-by-Step Group Buying Protocol -->
+  <section class="section" id="protocol">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Чек-лист покупки • Без ошибок</span>
+        <h2 class="section-title">Протокол Покупки Билетов на 6–8 Человек</h2>
+        <p class="section-desc">Выполните эти 4 шага по порядку во время созвона группы (до окончания Black Week 1 декабря 2026!).</p>
+      </div>
+
+      <div class="step-protocol-grid">
+        <div class="protocol-card">
+          <div class="protocol-num">1</div>
+          <h3 style="color: #fff; font-size: 1.08rem; margin-bottom: 8px;">Проверьте тариф на «1 пассажира»</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Откройте выбранную дату <code>OSL ↔ LYR</code> на <strong>Norwegian</strong> и <strong>SAS</strong> сначала на <strong>1 взрослого</strong>. Запомните базовую цену! Если при вводе 6–8 человек цена за билет прыгает вверх — значит дешёвых мест осталось 2–4 штуки.
+          </p>
+        </div>
+
+        <div class="protocol-card">
+          <div class="protocol-num">2</div>
+          <h3 style="color: #fff; font-size: 1.08rem; margin-bottom: 8px;">Первым купите общий рейс OSL ↔ LYR!</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Сначала бронируем <strong>главный дефицитный перелёт Осло ↔ Шпицберген</strong> на всех 6–8 участников (разбив на 2–3 корзины по 2–4 чел., чтобы забрать дешёвый тариф!). Только когда места в самолёте на Шпицберген у всех на руках — переходим к подлётам.
+          </p>
+        </div>
+
+        <div class="protocol-card">
+          <div class="protocol-num">3</div>
+          <h3 style="color: #fff; font-size: 1.08rem; margin-bottom: 8px;">Подлёты из WAW, KRK и AMS в OSL</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Каждая подгруппа берёт свой рейс в <strong>OSL (не TRF!)</strong> на <strong>День 0</strong>. Для Кракова проверьте единый обратный билет Norwegian <code>LYR → OSL → KRK</code> (если обратно летите на <code>DY391</code>!). Распределите 3–4 сдаваемых чемодана 23 кг между участниками.
+          </p>
+        </div>
+
+        <div class="protocol-card">
+          <div class="protocol-num">4</div>
+          <h3 style="color: #fff; font-size: 1.08rem; margin-bottom: 8px;">Бронь отеля в Осло с бесплатной отменой</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Сразу забронируйте 3–4 двухместных номера (Twin) в <em>Comfort Hotel RunWay / Radisson RED Oslo Airport</em> или в центре у <code>Oslo S</code> с бесплатной отменой, чтобы вся группа жила в одном месте.
+          </p>
+        </div>
+      </div>
+
+      <!-- Direct Booking Links Bar -->
+      <div class="glass-panel" style="margin-top: 30px; text-align: center;">
+        <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 16px;">Прямые ссылки для открытия на созвоне при покупке:</h3>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://www.norwegian.com/en/low-fare-calendar/" target="_blank" rel="noopener" class="btn btn-primary">Norwegian Low Fare Calendar ↗</a>
+          <a href="https://www.flysas.com/en/low-fare-calendar/" target="_blank" rel="noopener" class="btn btn-primary">SAS Low Fare Calendar ↗</a>
+          <a href="https://www.lot.com" target="_blank" rel="noopener" class="btn btn-secondary">LOT (Варшава–Осло) ↗</a>
+          <a href="https://www.wizzair.com" target="_blank" rel="noopener" class="btn btn-secondary">Wizz Air (Краков–OSL) ↗</a>
+          <a href="https://www.klm.com" target="_blank" rel="noopener" class="btn btn-secondary">KLM (Амстердам–Осло) ↗</a>
+          <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener" class="btn btn-secondary">Google Flights ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">← Главная страница экспедиции</a>
+        <a href="#windows">Окна дат</a>
+        <a href="#cities">3 Города</a>
+        <a href="#svalbard-leg">Рейс на Шпицберген</a>
+        <a href="#flight-calc">Калькулятор</a>
+      </div>
+      <p>Центр покупки билетов • Варшава + Краков + Амстердам → Осло → Шпицберген (Май 2027)</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile menu
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const navMenu = document.getElementById('navMenu');
+      if (mobileBtn && navMenu) {
+        mobileBtn.addEventListener('click', () => navMenu.classList.toggle('show'));
+        document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('show')));
+      }
+
+      // Window Tabs Data
+      const windowsData = {
+        w1: {
+          title: 'Окно 1: Встреча в Осло Вс 2 мая → Шпицберген Пн 3 мая – Пт 7 мая 2027',
+          badge: 'Самые дешёвые тарифы OSL↔LYR и будний прилёт!',
+          day0: 'Вс, 2 мая',
+          out: 'Пн, 3 мая',
+          back: 'Пт, 7 мая',
+          home: 'Пт, 7 мая (вечер) или Сб 8 мая',
+          note: '💡 Плюс этого окна: Прилёт в понедельник 3 мая (прокат IGP, оружейный магазин и Nordpolet открыты по буднему графику + дегустация пивоварни в 18:00), а после польской Майовки цены из Варшавы и Кракова заметно ниже, чем 29–30 апреля.',
+          surgePLN: 0
+        },
+        w2: {
+          title: 'Окно 2 (Польская Майовка): Встреча в Осло Чт 29 апр → Шпицберген Пт 30 апр – Вт 4 мая 2027',
+          badge: 'Минимум отгулов в Польше (1 и 3 мая — праздники!)',
+          day0: 'Чт, 29 апреля',
+          out: 'Пт, 30 апреля',
+          back: 'Вт, 4 мая',
+          home: 'Вт, 4 мая (вечер)',
+          note: '💡 Плюс этого окна: Идеально экономит дни отпуска для Варшавы и Кракова! Учитывайте: суббота 1 мая — День труда в Норвегии (Nordpolet закрыт, купить алкоголь нужно сразу по прилёту в пятницу 30 апреля до 18:00!), а билеты из Польши на пик Майовки дороже на ~250 PLN.',
+          surgePLN: 220
+        },
+        w3: {
+          title: 'Окно 3: Встреча в Осло Пт 30 апр → Шпицберген Сб 1 мая – Ср 5 мая 2027',
+          badge: 'Захватывает Майовку и избегает праздника 6 мая',
+          day0: 'Пт, 30 апреля',
+          out: 'Сб, 1 мая',
+          back: 'Ср, 5 мая',
+          home: 'Ср, 5 мая (вечер)',
+          note: '💡 Плюс этого окна: Дешёвый возврат в середине недели (среда 5 мая) и отсутствие норвежского выходного 6 мая. В субботу 1 мая (День труда) прокат IGP выдаёт технику утром по брони, а магазины открываются в штатном режиме с понедельника 3 мая.',
+          surgePLN: 150
+        },
+        w4: {
+          title: 'Окно 4 (Компактное 4Д/3Н): Встреча в Осло Сб 1 мая → Шпицберген Вс 2 мая – Ср 5 мая 2027',
+          badge: 'Всего 5 дней вместе с днём встречи в Осло!',
+          day0: 'Сб, 1 мая',
+          out: 'Вс, 2 мая',
+          back: 'Ср, 5 мая',
+          home: 'Ср, 5 мая (вечер)',
+          note: '💡 Плюс этого окна: Подходит, если у всей группы жёсткий лимит в 5 дней суммарно от вылета из дома до возвращения. На Шпицбергене 3 полные ночи (понедельник — снегоходы, вторник — хаски и ночёвка в леднике, среда — спуск и вылет в 14:05/14:45).',
+          surgePLN: 60
+        }
+      };
+
+      let activeWindow = 'w1';
+      document.querySelectorAll('[data-window]').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('[data-window]').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          activeWindow = tab.dataset.window;
+          const d = windowsData[activeWindow];
+          document.getElementById('winTitle').textContent = d.title;
+          document.getElementById('winBadge').textContent = d.badge;
+          document.getElementById('tdDay0').textContent = d.day0;
+          document.getElementById('tdOut').textContent = d.out;
+          document.getElementById('tdBack').textContent = d.back;
+          document.getElementById('tdHome').textContent = d.home;
+          document.getElementById('winNote').textContent = d.note;
+          recalcFlights();
+        });
+      });
+
+      // Multi-City Flight Calculator
+      const rates = {
+        PLN: { sym: 'PLN', r: 1 },
+        EUR: { sym: '€', r: 0.232 },
+        NOK: { sym: 'NOK', r: 2.50 }
+      };
+
+      let wawPax = 4; // + 2 KRK + 1 AMS = 7 total
+      let bagMode = 'shared'; // 'all' | 'shared' | 'light'
+      let includeOslo = true;
+      let curr = 'PLN';
+
+      function recalcFlights() {
+        const krkPax = 2;
+        const amsPax = 1;
+        const totalPax = wawPax + krkPax + amsPax;
+        const c = rates[curr];
+        const surge = windowsData[activeWindow].surgePLN;
+
+        // Base round-trip fares (Light, no checked bag) in PLN:
+        // OSL <-> LYR base RT: 1080 PLN; +23kg bag RT: +360 PLN
+        // Feeder WAW <-> OSL RT: 390 PLN (+surge); +23kg bag RT: +280 PLN
+        // Feeder KRK <-> OSL RT: 410 PLN (+surge); +23kg bag RT: +290 PLN
+        // Feeder AMS <-> OSL RT: 710 PLN (+surge*0.5); +23kg bag RT: +270 PLN
+        const bagAddLyr = bagMode === 'all' ? 360 : (bagMode === 'shared' ? 180 : 0);
+        const bagAddPol = bagMode === 'all' ? 285 : (bagMode === 'shared' ? 145 : 0);
+        const bagAddAms = bagMode === 'all' ? 270 : (bagMode === 'shared' ? 135 : 0);
+
+        // Oslo Day 0 hotel + airport train (~240 PLN in Twin; slight single surcharge if odd total group)
+        const oddSurcharge = (totalPax % 2 !== 0) ? Math.round(180 / totalPax) : 0;
+        const osloCost = includeOslo ? (245 + oddSurcharge) : 0;
+
+        const lyrLeg = 1080 + bagAddLyr;
+        const wawTotalPerPax = 390 + surge + bagAddPol + lyrLeg + osloCost;
+        const krkTotalPerPax = 410 + surge + bagAddPol + lyrLeg + osloCost;
+        const amsTotalPerPax = 710 + Math.round(surge * 0.4) + bagAddAms + lyrLeg + osloCost;
+
+        const grandTotalPLN = (wawPax * wawTotalPerPax) + (krkPax * krkTotalPerPax) + (amsPax * amsTotalPerPax);
+        const avgPerPaxPLN = grandTotalPLN / totalPax;
+
+        const fmt = (valPLN) => `${Math.round(valPLN * c.r).toLocaleString('ru-RU')} ${c.sym}`;
+
+        document.getElementById('fcTotalPax').textContent = totalPax;
+        document.getElementById('fcGrandTotal').textContent = fmt(grandTotalPLN);
+        document.getElementById('fcAvgPerPerson').textContent = `В среднем на участника (${wawPax} WAW + 2 KRK + 1 AMS): ~${fmt(avgPerPaxPLN)}`;
+        document.getElementById('fcWawPerPax').textContent = fmt(wawTotalPerPax);
+        document.getElementById('fcKrkPerPax').textContent = fmt(krkTotalPerPax);
+        document.getElementById('fcAmsPerPax').textContent = fmt(amsTotalPerPax);
+        document.getElementById('fcLyrLeg').textContent = fmt(lyrLeg);
+
+        document.querySelectorAll('.oslo-lbl').forEach(el => {
+          el.textContent = includeOslo ? '+ ночь в Осло' : 'только перелёт';
+        });
+      }
+
+      document.querySelectorAll('[data-waw]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-waw]').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          wawPax = parseInt(btn.dataset.waw, 10);
+          recalcFlights();
+        });
+      });
+
+      document.querySelectorAll('[data-bag]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-bag]').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          bagMode = btn.dataset.bag;
+          recalcFlights();
+        });
+      });
+
+      document.querySelectorAll('[data-oslo]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-oslo]').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          includeOslo = (btn.dataset.oslo === 'yes');
+          recalcFlights();
+        });
+      });
+
+      document.querySelectorAll('[data-fccurr]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-fccurr]').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          curr = btn.dataset.fccurr;
+          recalcFlights();
+        });
+      });
+
+      recalcFlights();
+    });
+  </script>
+</body>
+</html>
